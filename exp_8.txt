@@ -1,0 +1,63 @@
+tags = ["DET", "NOUN", "VERB"]
+words = ["The", "dog", "runs"]
+
+initial = {
+    "DET": 0.6,
+    "NOUN": 0.3,
+    "VERB": 0.1
+}
+
+transition = {
+    "DET": {"DET": 0.1, "NOUN": 0.7, "VERB": 0.2},
+    "NOUN": {"DET": 0.1, "NOUN": 0.2, "VERB": 0.7},
+    "VERB": {"DET": 0.3, "NOUN": 0.3, "VERB": 0.4}
+}
+
+emission = {
+    "DET": {"The": 0.9, "dog": 0.05, "runs": 0.01},
+    "NOUN": {"The": 0.05, "dog": 0.8, "runs": 0.05},
+    "VERB": {"The": 0.01, "dog": 0.05, "runs": 0.7}
+}
+
+V = [{}]
+backpointer = [{}]
+
+for tag in tags:
+    V[0][tag] = initial[tag] * emission[tag][words[0]]
+    backpointer[0][tag] = None
+
+for t in range(1, len(words)):
+    V.append({})
+    backpointer.append({})
+
+    for current_tag in tags:
+        probabilities = []
+
+        for previous_tag in tags:
+            probability = (
+                V[t-1][previous_tag]
+                * transition[previous_tag][current_tag]
+                * emission[current_tag][words[t]]
+            )
+
+            probabilities.append((probability, previous_tag))
+
+        best_probability, best_previous_tag = max(probabilities)
+
+        V[t][current_tag] = best_probability
+        backpointer[t][current_tag] = best_previous_tag
+
+best_final_tag = max(V[-1], key=V[-1].get)
+
+best_tags = [best_final_tag]
+
+for t in range(len(words) - 1, 0, -1):
+    best_final_tag = backpointer[t][best_final_tag]
+    best_tags.append(best_final_tag)
+
+best_tags.reverse()
+
+print("POS Tagged Sentence:")
+
+for word, tag in zip(words, best_tags):
+    print(word, "->", tag)

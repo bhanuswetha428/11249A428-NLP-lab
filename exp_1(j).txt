@@ -1,0 +1,7 @@
+import re
+
+text = "நான் கணினி அறிவியலை விரும்புகிறேன்."
+
+tokens = re.findall(r'\w+', text, flags=re.UNICODE)
+
+print("Tokens:", " ".join(tokens))

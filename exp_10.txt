@@ -1,0 +1,18 @@
+import nltk
+
+nltk.download("punkt_tab")
+nltk.download("averaged_perceptron_tagger_eng")
+
+sentence = "The clever student reads a book"
+
+words = nltk.word_tokenize(sentence)
+
+tagged = nltk.pos_tag(words)
+
+grammar = "NP: {<DT>?<JJ>*<NN>+}"
+
+parser = nltk.RegexpParser(grammar)
+
+result = parser.parse(tagged)
+
+print(result)

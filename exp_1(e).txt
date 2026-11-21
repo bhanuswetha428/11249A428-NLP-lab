@@ -1,0 +1,12 @@
+text = "Natural Language Processing"
+
+words = text.split()
+
+longest = max(words, key=len)
+shortest = min(words, key=len)
+
+average = sum(len(word) for word in words) / len(words)
+
+print("Longest Word:", longest)
+print("Shortest Word:", shortest)
+print("Average Length:", round(average))

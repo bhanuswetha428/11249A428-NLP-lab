@@ -1,0 +1,17 @@
+from pattern.en import pluralize, singularize, conjugate
+
+word = "child"
+
+print("Noun Morphology")
+print("----------------")
+print("Singular :", singularize(word))
+print("Plural :", pluralize(word))
+
+verb = "play"
+
+print("\nVerb Morphology")
+print("----------------")
+print("Base :", verb)
+print("Past :", conjugate(verb, tense="past"))
+print("Present :", conjugate(verb, tense="present"))
+print("Participle :", conjugate(verb, tense="present", aspect="progressive"))

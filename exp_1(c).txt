@@ -1,0 +1,10 @@
+from collections import Counter
+
+text = "NLP NLP AI AI AI"
+
+words = text.split()
+
+frequency = Counter(words)
+
+for word, count in frequency.items():
+    print(word, ":", count)

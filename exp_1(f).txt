@@ -1,0 +1,9 @@
+text = "AI AI ML NLP"
+
+words = text.split()
+
+total_words = len(words)
+unique_words = len(set(words))
+
+print("Total Words =", total_words)
+print("Unique Words =", unique_words)

@@ -1,0 +1,7 @@
+import inflect
+
+p = inflect.engine()
+
+number = int(input("Enter a number: "))
+
+print("Ordinal :", p.ordinal(number))

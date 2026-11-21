@@ -1,0 +1,9 @@
+import nltk
+from nltk.corpus import stopwords
+
+nltk.download('stopwords')
+
+words = stopwords.words('english')
+
+print("English Stop Words:")
+print(words)

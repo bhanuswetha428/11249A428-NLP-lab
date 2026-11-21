@@ -1,0 +1,10 @@
+text = "AI AI NLP ML"
+
+words = text.split()
+
+total = len(words)
+unique = len(set(words))
+
+diversity = unique / total
+
+print("Lexical Diversity =", diversity)

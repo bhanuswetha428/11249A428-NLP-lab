@@ -1,0 +1,11 @@
+import nltk
+from nltk.tokenize import sent_tokenize
+
+nltk.download('punkt')
+
+text = "NLP is interesting. It is a branch of AI."
+
+sentences = sent_tokenize(text)
+
+for i, sentence in enumerate(sentences, 1):
+    print("Sentence", i, ":", sentence)
